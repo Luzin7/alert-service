@@ -18,30 +18,35 @@ Este serviço segue os princípios da Arquitetura Limpa (Clean Architecture) e H
 
 ```mermaid
 graph TD
-    subgraph "Sistema Externo"
-        A[Search Service (Java)]
-    end
+    %% 1. Definição dos Nós
+    A[Search Service (Java)]
+    B(RabbitMQ)
+    C(Redis Cache)
+    D[Worker Go]
+    E[API de Notificação (E-mail)]
 
-    subgraph "Infraestrutura de Mensageria e Cache"
-        B(RabbitMQ)
-        C(Redis Cache)
-    end
-
-    subgraph "Alert Service (Este Repositório)"
-        D[Worker Go]
-    end
-
-    subgraph "Serviço de Terceiros"
-        E[API de Notificação (E-mail)]
-    end
-
-    %% Definição do Fluxo de Dados
+    %% 2. Definição das Relações
     A -- "1. Publica evento 'price.updated'" --> B
     B -- "2. Consome evento da fila" --> D
     D -- "3. Verifica idempotência e rate limit" --> C
     D -- "4. Envia notificação" --> E
 
-    %% Estilização dos Componentes
+    %% 3. Agrupamento em Sub-diagramas
+    subgraph "Sistema Externo"
+        A
+    end
+    subgraph "Infraestrutura de Mensageria e Cache"
+        B
+        C
+    end
+    subgraph "Alert Service (Este Repositório)"
+        D
+    end
+    subgraph "Serviço de Terceiros"
+        E
+    end
+
+    %% 4. Estilização
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#FF6600,stroke:#333,stroke-width:2px
     style C fill:#DC382D,stroke:#333,stroke-width:2px
