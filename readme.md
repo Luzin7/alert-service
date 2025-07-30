@@ -37,11 +37,11 @@ graph TD
         E
     end
 
-    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style A fill:#00060,stroke:#333,stroke-width:2px
     style B fill:#FF6600,stroke:#333,stroke-width:2px
     style C fill:#DC382D,stroke:#333,stroke-width:2px
     style D fill:#00ADD8,stroke:#333,stroke-width:2px
-    style E fill:#4CAF50,stroke:#333,stroke-width:2px
+    style E fill:#00060,stroke:#333,stroke-width:2px
   ```
 
   ## Estrutura planejada (pode sofrer alterações)
