@@ -16,7 +16,8 @@ Este serviço segue os princípios da Arquitetura Limpa (Clean Architecture) e H
 
 ## Fluxo planejado (pode sofrer alterações)
 
-```graph TD
+```mermaid
+graph TD
     subgraph "Sistema Externo"
         A[Search Service (Java)]
     end
