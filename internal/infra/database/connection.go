@@ -18,3 +18,7 @@ func DatabaseConnection(connectionString string, databaseName string) (*pgx.Conn
 
 	return connection, nil
 }
+
+func CloseDatabaseConnection(connection *pgx.Conn) error {
+	return connection.Close(context.Background())
+}
