@@ -1,19 +1,14 @@
 package smtp
 
-type SMTPClient struct {
-	Server   string
-	Port     int
-	Username string
-	Password string
+type Connection struct {
+	client *SMTPClient
 }
 
-func SMTPConnection(server string, port int, username string, password string) (*SMTPClient, error) {
-	connection := &SMTPClient{
-		Server:   server,
-		Port:     port,
-		Username: username,
-		Password: password,
-	}
+func NewConnection(client *SMTPClient) *Connection {
+	return &Connection{client: client}
+}
 
-	return connection, nil
+func (c *Connection) Send(to, subject, body string) error {
+	// TODO: Implementar client e lógica de envio de email de vdd
+	return nil
 }
