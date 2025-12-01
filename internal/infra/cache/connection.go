@@ -4,12 +4,12 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-func CacheConnection(connectionString string) (*redis.Client, error) {
+func CacheConnection(addr string, password string, username string, db int) (*redis.Client, error) {
 	connection := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "",
-		Username: "",
-		DB:       0,
+		Addr:     addr,
+		Password: password,
+		Username: username,
+		DB:       db,
 		Protocol: 2,
 	})
 
