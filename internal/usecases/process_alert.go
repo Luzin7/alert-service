@@ -5,12 +5,21 @@ import (
 	"fmt"
 
 	"github.com/Luzin7/alert-service/internal/domain"
+	"github.com/Luzin7/alert-service/internal/infra/smtp"
 )
 
 type ProcessAlert struct {
 	linkGen domain.LinkGenerator
 	repo    domain.AlertRepository
-	sender  domain.TempEmailSender
+	sender  *smtp.Connection
+}
+
+func NewProcessAlert(linkGen domain.LinkGenerator, repo domain.AlertRepository, sender *smtp.Connection) *ProcessAlert {
+	return &ProcessAlert{
+		linkGen: linkGen,
+		repo:    repo,
+		sender:  sender,
+	}
 }
 
 func (u *ProcessAlert) Execute(ctx context.Context, alert *domain.Alert) error {
