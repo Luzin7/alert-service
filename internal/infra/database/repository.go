@@ -6,11 +6,15 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-type Repository struct {
-	database *pgx.Conn
+type DBConnection interface {
+	QueryRow(ctx context.Context, sql string, args ...interface{}) pgx.Row
 }
 
-func NewRepository(db *pgx.Conn) *Repository {
+type Repository struct {
+	database DBConnection
+}
+
+func NewRepository(db DBConnection) *Repository {
 	return &Repository{
 		database: db,
 	}
