@@ -1,4 +1,22 @@
 services:
+  postgres:
+    image: postgres:alpine
+    container_name: alert-service-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: search_service
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - alert-service-network
   rabbitmq:
     image: rabbitmq:3-management-alpine
     container_name: alert-service-rabbitmq
