@@ -6,7 +6,7 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-func DatabaseConnection(connectionString string, databaseName string) (*pgx.Conn, error) {
+func DatabaseConnection(connectionString string) (*pgx.Conn, error) {
 	connection, err := pgx.Connect(context.Background(), connectionString)
 	if err != nil {
 		return nil, err
