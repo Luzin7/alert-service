@@ -34,12 +34,7 @@ func main() {
 		log.Fatal("DATABASE_URL is not set")
 	}
 
-	databaseName := os.Getenv("DATABASE_NAME")
-	if databaseName == "" {
-		log.Fatal("DATABASE_NAME is not set")
-	}
-
-	db, err := database.DatabaseConnection(databaseConnectionString, databaseName)
+	db, err := database.DatabaseConnection(databaseConnectionString)
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
